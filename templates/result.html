@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Результаты маршрута</title>
+</head>
+<body>
+    <h1>Результаты маршрута</h1>
+    {% if saved_data %}
+        <h2>Информация о маршруте:</h2>
+        <p><strong>Начало:</strong> {{ saved_data[0]['Начало'] }}</p>
+        <p><strong>Место назначения:</strong> {{ saved_data[0]['Место назначения'] }}</p>
+        <p><strong>Длительность:</strong> {{ saved_data[0]['Длительность'] }}</p>
+        <p><strong>Продолжительность в пробке:</strong> {{ saved_data[0]['Продолжительность в пробке'] }}</p>
+        <p><strong>Расстояние:</strong> {{ saved_data[0]['Расстояние'] }}</p>
+
+        <h3>Шаги маршрута:</h3>
+        <ol>
+            {% for step in saved_data[0]['Шаги'] %}
+                <li>
+                    <p><strong>Инструкция:</strong> {{ step['инструкция']|safe }}</p>
+                    <p><strong>Дистанция:</strong> {{ step['дистанция'] }}</p>
+                    <p><strong>Продолжительность:</strong> {{ step['продолжительность'] }}</p>
+                </li>
+            {% endfor %}
+        </ol>
+    {% else %}
+        <p>Данные о маршруте не найдены.</p>
+    {% endif %}
+</body>
+</html>
